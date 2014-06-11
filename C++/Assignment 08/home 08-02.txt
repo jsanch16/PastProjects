@@ -1,6 +1,0 @@
-Input Key: secret
-Input for input filename: in.txt
-Input for output filename for encrypt: en.txt
-Input for output filename for decrypt: de.txt
-Input key to see the real message: secret
-Press any key to continue . . .

@@ -1,5 +1,0 @@
-Homework03
-
-Running time from Iterative Binary Search: 4.43
-Running time from Recursive Binary Search: 4.82
-Press any key to continue . . .
