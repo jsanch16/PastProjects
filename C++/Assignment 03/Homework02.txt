@@ -1,0 +1,7 @@
+Homework02
+
+The result: 49.4811
+The time elapse from iterative summation: 4.648
+The result: 49.4811
+The time elapse from recursive summation: 7.644
+Press any key to continue . . .

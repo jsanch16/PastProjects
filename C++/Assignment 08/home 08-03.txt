@@ -1,0 +1,36 @@
+account            name    balance
+  1                 Jung     1000
+  2                  Jee     3000
+  3                Helen     3533
+  4               Migael     3535
+  5              Megamen     9000
+  6                Ra'el    10000
+  7              Clinton     6000
+  8               Barack     5000
+  9                 Mitt     4000
+ 10                 Mike     2100
+Please input account number 1-10: 1
+account            name    balance
+  1                 Jung     1000
+Please input account number 1-10: 1
+account            name    balance
+  1                 Jung     1050
+Please input account number 1-10: 2
+account            name    balance
+  2                  Jee     3000
+Please input account number 1-10: 1
+account            name    balance
+  1                 Jung   1102.5
+Please input account number 1-10: 0
+account            name    balance
+  1                 Jung  1157.63
+  2                  Jee     3150
+  3                Helen     3533
+  4               Migael     3535
+  5              Megamen     9000
+  6                Ra'el    10000
+  7              Clinton     6000
+  8               Barack     5000
+  9                 Mitt     4000
+ 10                 Mike     2100
+Press any key to continue . . .

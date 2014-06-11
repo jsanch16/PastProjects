@@ -1,0 +1,10 @@
+====== Age =====
+The average: 28.3333
+The standard deviation: 43.7061
+The coefficient of variation: 1.54257
+
+====== GPA ======
+The average: 3.5
+The standard deviation: 4.95177
+The coefficient of variation: 1.41479
+Press any key to continue . . .

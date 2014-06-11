@@ -1,0 +1,352 @@
+/*************************************************************************************
+ *
+ * This class represents a fraction whose numerator and denominator are integers.
+ *
+ * Requirements:
+ *      Implement interfaces: FractionInterface and Comparable (i.e. compareTo())
+ *      Implement methods equals() and toString() from class Object
+ *      Should work for both positive and negative fractions
+ *      Must always reduce fraction to lowest term 
+ *      Must throw excpetion in case of errors
+ *      Must not add new or modify existing data fields
+ *      Must not add new public methods
+ *      May add private methods
+ *      For number such as 10/-3, it is same as -3/10 (see hints 2. below)
+ *
+ * Hints:
+ *
+ * 1. To reduce a fraction such as 4/8 to lowest terms, you need to divide both
+ *    the numerator and the denominator by their greatest common denominator.
+ *    The greatest common denominator of 4 and 8 is 4, so when you divide
+ *    the numerator and denominator of 4/8 by 4, you get the fraction 1/2.
+ *    The recursive algorithm which finds the greatest common denominator of
+ *    two positive integers is implemnted (see code)
+ *       
+ * 2. It will be easier to determine the correct sign of a fraction if you force
+ *    the fraction's denominator to be positive. However, your implementation must 
+ *    handle negative denominators that the client might provide.
+ *           
+ * 3. You need to downcast reference parameter FractionInterface to Fraction if  
+ *    you want to use it as Fraction. See add, subtract, multiply and divide methods
+ *
+ ************************************************************************************/
+
+package PJ1;
+
+public class Fraction implements FractionInterface, Comparable<Fraction>//inplement NameInterface
+{
+	private	int num;	// Numerator	
+	private	int den;	// Denominator
+
+	public Fraction()
+        {
+		// set fraction to default = 0/1
+		setFraction(0, 1);
+	}	// end default constructor
+
+	public Fraction(int numerator, int denominator)
+        {
+        num = numerator;
+        den = denominator;
+        
+       
+	}	// end constructor
+
+	public void setFraction(int numerator, int denominator) throws ArithmeticException
+        {
+        num = numerator;
+        den = denominator;
+        
+        if (den == 0)
+            throw new ArithmeticException("division by zero not allowed");
+        }
+        reduceToLowestTerms();
+    
+    }
+        // return ArithmeticException if initialDenominator is 0
+	}	// end setFraction
+
+	public int getNumerator(){
+		
+		return num;
+    }	// end getNumerator
+
+	public int getDenominator(){
+		
+		return den;
+	}	// end getDenominator
+
+	public char getSign(){
+        char sign = '\0';
+        
+        if((num < 0) && (den < 0)){
+            sign = '+';
+        }
+        else if((num < 0) || (den < 0)){
+            sign = '-';
+        }
+        else
+            sign = '+';
+    
+		return sign;
+	}	// end getSign
+
+	public void switchSign(){
+        num= -num;
+        
+	}	// change setSign
+    
+    /** Task: Adds two fractions.
+	 *  @param secondFraction a fraction that is the second operand of the addition
+	 *  @return the sum of the invoking fraction and the secondFraction */
+	public FractionInterface add(FractionInterface secondFraction){
+        // a/b + c/d is (ad + cb)/(bd)
+        
+        FractionInterface addition = new Fraction(0,1);
+        
+                addition.setFraction(num * secondFraction.getDenominator()
+                + secondFraction.getNumerator()
+                * den, den * secondFraction.getDenominator());
+            
+       
+        return addition;
+	}	// end add
+
+	public FractionInterface subtract(FractionInterface secondFraction)
+        {
+        // a/b - c/d is (ad - cb)/(bd)
+        FractionInterface subtraction = new Fraction(0,1);
+        
+                subtraction.setFraction(num * secondFraction.getDenominator() -
+                secondFraction.getNumerator()
+                * den, den * secondFraction.getDenominator());
+                    
+		
+		
+		return subtraction;
+    }	// end subtract
+
+	public FractionInterface multiply(FractionInterface secondFraction)
+        {
+            // a/b * c/d is (ac)/(bd)
+        FractionInterface  product = new Fraction(0,1);
+            product.setFraction((num * secondFraction.getNumerator()),
+            (den * secondFraction.getDenominator()));
+            
+            
+                
+        return product;
+	}	// end multiply
+
+	public FractionInterface divide(FractionInterface secondFraction) throws ArithmeticException
+        {
+		// return ArithmeticException if secondFraction is 0
+		// a/b / c/d is (ad)/(bc)
+        
+        if((den == 0) || ( secondFraction.getDenominator() == 0)){
+            throw new ArithmeticException("Division by zero is not allowed");
+            }
+            
+        FractionInterface divide = new Fraction(0,1);
+                    divide.setFraction(num * secondFraction.getNumerator(),
+                    den * secondFraction.getDenominator());
+            
+                
+		return divide;
+        
+	}	// end divide
+
+	public FractionInterface getReciprocal() throws ArithmeticException
+        {
+            if(den == 0)
+                throw new ArithmeticException(" secondFraction cannot be 0");
+            
+        // return ArithmeticException if secondFraction is 0
+		
+		return new Fraction (den, num);
+	} // end getReciprocal
+
+
+	public boolean equals(Object other)
+        {
+        Fraction y = (Fraction)other;
+        
+        if(this.getNumerator() == y.getNumerator() &&
+            this.getDenominator() == y.getDenominator()){
+        return true;
+        }
+
+        return false;
+        
+        
+	} // end equals
+
+
+	public int compareTo(Fraction other)
+        {
+            FractionInterface answer = this.subtract(other);
+            
+            if(answer.getNumerator() < 0 ){
+                return -1;
+                }
+            if(answer.getNumerator() > 0 ){
+                return 1;
+                }
+        return 0;
+
+	} // end compareTo
+
+	
+	public String toString()
+        {
+		return num + "/" + den;
+	} // end toString
+
+
+	/** Task: Reduces a fraction to lowest terms. */
+
+        //-----------------------------------------------------------------
+        //  private methods start here
+        //-----------------------------------------------------------------
+
+	private void reduceToLowestTerms()
+	{
+        int common = 0;
+        
+        int numerator = Math.abs(num);
+        int denominator = Math.abs(den);
+        
+        common = greatestCommonDivisor(numerator, denominator);
+        num = num/common;
+        den = den/common;
+        
+                // implement this method!
+                //
+                // Outline:
+                // compute GCD of num & den
+                // greatestCommonDivisor works for + numbers.
+                // So, you should eliminate - sign
+                // then reduce numbers : num/GCD and den/GCD
+	}	// end reduceToLowestTerms
+
+  	/** Task: Computes the greatest common secondFraction of two integers.
+	 *  @param integerOne	 an integer
+	 *  @param integerTwo	 another integer
+	 *  @return the greatest common divisor of the two integers */
+	private int greatestCommonDivisor(int integerOne, int integerTwo)
+        {
+		 int result;
+
+		 if (integerOne % integerTwo == 0)
+			result = integerTwo;
+		 else
+			result = greatestCommonDivisor(integerTwo, integerOne % integerTwo);
+
+		 return result;
+	}	// end greatestCommonDivisor
+
+
+	//-----------------------------------------------------------------
+	//  Simple test is provided here 
+
+	public static void main(String[] args)
+	{
+		FractionInterface firstOperand = null;
+		FractionInterface secondOperand = null;
+		FractionInterface result = null;
+
+		Fraction nineSixteenths = new Fraction(9, 16);	// 9/16
+		Fraction oneFourth = new Fraction(1, 4);        // 1/4
+
+		// 7/8 + 9/16
+		firstOperand = new Fraction(7, 8);
+		result = firstOperand.add(nineSixteenths);
+		System.out.println("The sum of " + firstOperand + " and " +
+				nineSixteenths + " is \t\t" + result);
+
+		// 9/16 - 7/8
+		firstOperand = nineSixteenths;
+		secondOperand = new Fraction(7, 8);
+		result = firstOperand.subtract(secondOperand);
+		System.out.println("The difference of " + firstOperand	+
+				" and " +	secondOperand + " is \t" + result);
+
+		// 15/-2 * 1/4
+		firstOperand.setFraction(15, -2);
+		result = firstOperand.multiply(oneFourth);
+		System.out.println("The product of " + firstOperand	+
+				" and " +	oneFourth + " is \t" + result);
+
+		// (-21/2) / (3/7)
+		firstOperand.setFraction(-21, 2);
+		secondOperand.setFraction(3, 7);
+		result = firstOperand.divide(secondOperand);
+		System.out.println("The quotient of " + firstOperand	+
+				" and " +	secondOperand + " is \t" + result);
+
+		// -21/2 + 7/8
+		firstOperand.setFraction(-21, 2);
+		secondOperand.setFraction(7, 8);
+		result = firstOperand.add(secondOperand);
+		System.out.println("The sum of " + firstOperand	+
+				" and " +	secondOperand + " is \t\t" + result);
+
+		System.out.println();
+
+		// equality check
+		if (firstOperand.equals(firstOperand))
+			System.out.println("Identity of fractions OK");
+		else
+			System.out.println("ERROR in identity of fractions");
+
+		secondOperand.setFraction(-42, 4);
+		if (firstOperand.equals(secondOperand))
+			System.out.println("Equality of fractions OK");
+		else
+			System.out.println("ERROR in equality of fractions");
+
+		// comparison check
+		Fraction first  = (Fraction)firstOperand;
+		Fraction second = (Fraction)secondOperand;
+		
+		if (first.compareTo(second) == 0)
+			System.out.println("Fractions == operator OK");
+		else
+			System.out.println("ERROR in fractions == operator");
+
+		second.setFraction(7, 8);
+		if (first.compareTo(second) < 0)
+			System.out.println("Fractions < operator OK");
+		else
+			System.out.println("ERROR in fractions < operator");
+
+		if (second.compareTo(first) > 0)
+			System.out.println("Fractions > operator OK");
+		else
+			System.out.println("ERROR in fractions > operator");
+
+		System.out.println();
+
+		try {
+			Fraction a1 = new Fraction(1, 0);		    
+		}
+		catch ( ArithmeticException arithmeticException )
+           	{
+              		System.err.printf( "\nException: %s\n", arithmeticException );
+           	} // end catch
+
+		try {
+			Fraction a2 = new Fraction();		    
+			Fraction a3 = new Fraction(1, 2);		    
+			a3.divide(a2);
+		}
+		catch ( ArithmeticException arithmeticException )
+           	{
+              		System.err.printf( "\nException: %s\n", arithmeticException );
+           	} // end catch
+
+
+
+	}	// end main
+}// end Fraction
+

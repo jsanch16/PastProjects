@@ -1,0 +1,49 @@
+Welcome to guessing game 'HUMAN VS MACHINE'!
+Guess? number 1 to 99: 25
+Too Big!!!
+Guess? number 1 to 99: 60
+Too Big!!!
+Guess? number 1 to 99: 5
+Too Big!!!
+Guess? number 1 to 99: 2
+Too Small!!!
+Guess? number 1 to 99: 3
+Found!
+That's correct
+You 've tried : 5
+Okay It's my turn!
+The guess from computer: 62
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 36
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 23
+Is it correct press '>','<',or '=':
+>
+The guess from computer: 30
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 26
+Is it correct press '>','<',or '=':
+>
+The guess from computer: 28
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 27
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 26
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 25
+Is it correct press '>','<',or '=':
+<
+The guess from computer: 24
+Is it correct press '>','<',or '=':
+=
+I found it!
+I've tried : 10
+User WinS!
+Score HUMAN vs MACHINE: 5 : 10
+Press any key to continue . . .
