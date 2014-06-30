@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;TestPlaySimplePoker.java&apos; to &apos;poker2/src/PJ4&apos;&#x0D;&#x0A;- Original project: &apos;poker&apos;&#x0D;&#x0A;- Destination element: &apos;poker2/src/PJ4&apos;&#x0D;&#x0A;- Original element: &apos;PJ4.TestPlaySimplePoker.java&apos;" description="Copy compilation unit" destination="=poker2/src&lt;PJ4" element1="/src&lt;PJ4{TestPlaySimplePoker.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1368654738922" units="1" version="1.0"/>
-</session>
