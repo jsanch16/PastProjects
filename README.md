@@ -13,7 +13,11 @@ Java:
 
 C:
     1. Homework1
+        -simple HelloWorld
     2. Homework2
+        -create a copy program that copies contents of one file to a new one.
+    3. Homework3
+        -
 
 C++:
 
